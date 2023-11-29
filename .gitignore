@@ -1,0 +1,4 @@
+## Virtual Environment
+py3_env/
+
+__pycache__/
