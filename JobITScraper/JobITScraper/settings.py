@@ -12,6 +12,9 @@ BOT_NAME = "JobITScraper"
 SPIDER_MODULES = ["JobITScraper.spiders"]
 NEWSPIDER_MODULE = "JobITScraper.spiders"
 
+# FEEDS = {
+#     'result.json': {'format': 'json'},
+# }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "JobITScraper (+http://www.yourdomain.com)"
@@ -62,9 +65,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "JobITScraper.pipelines.JobitscraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "JobITScraper.pipelines.JobitscraperPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
