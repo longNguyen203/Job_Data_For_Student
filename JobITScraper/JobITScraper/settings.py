@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = "JobITScraper.spiders"
 #     'result.json': {'format': 'json'},
 # }
 
-SCRAPEOPS_API_KEY = 'df079156-1232-41f4-994c-955c3924aef4'
+# SCRAPEOPS_API_KEY = 'df079156-1232-41f4-994c-955c3924aef4'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'http://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 5
@@ -34,9 +34,10 @@ ROTATING_PROXY_LIST = [
     '51.75.121.63:45239'
 ]
 
+SCRAPEOPS_API_KEY = '4db8ec44-b4ad-4257-b408-c1d1b2cb7d0e'
+SCRAPEOPS_PROXY_ENABLED = True
 
-
-
+SCRAPEOPS_PROXY_SETTINGS = {'country': 'us'}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "JobITScraper (+http://www.yourdomain.com)"
@@ -79,9 +80,10 @@ ROBOTSTXT_OBEY = True
 #    # "JobITScraper.middlewares.JobitscraperDownloaderMiddleware": 543,
 #    # "JobITScraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
 #    # "JobITScraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 400
-#    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
-#    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-#    'rotating_proxies.middlewares.BanDetectionMiddleware': 620
+# #    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
+# #    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+# #    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+#     'scrapeops-scrapy-proxy-sdk.scrapeops-scrapy-proxy-sdk.ScrapeOpsScrapyProxySdk': 725
 # }
 
 # Enable or disable extensions
