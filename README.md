@@ -5,85 +5,71 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 *** CAY PHAN CAP PROJECT ***
 data_engineer_intern_project/
 │
 ├── dags/
-│   ├── crawl_data_dag.py
-│   └── process_data_dag.py
+│   ├── crawl_data_dag.py              
+│   ├── process_data_dag.py
+│   └── etl_dag.py
 │
 ├── scripts/
-│   ├── process_data.py      -> Chua logic xu ly data
-│   └── schedule_crawler.py  -> 
+│   ├── crawl_data/
+│   │   ├── website1_crawler.py
+│   │   └── website2_crawler.py
+│   ├── process_data.py
+│   ├── stored_procedures/
+│   │   └── date_processing.sql
+│   └── dimensional_modeling/
+│       └── create_dimension_tables.sql
 │
 ├── config/
 │   ├── config.py
 │   └── credentials.json
 │
 ├── data/
-│   ├── raw_data/            -> data tho
-│   │   ├── website1/        -> Crawl from web first
-│   │   └── website2/        -> Crawl from web second
-│   └── processed_data/      -> data da dc xu ly
+│   ├── raw_data/
+│   │   ├── website1/
+│   │   └── website2/
+│   └── processed_data/
 │
 ├── database/
 │   ├── schema.sql
 │   └── migrations/
 │
-├── logs/
-│   ├── crawler_logs.log
-│   └── processing_logs.log
+├── dimensional_model/
+│   └── dim_date.sql
 │
-├── tests/
-│   ├── test_crawler.py
-│   ├── test_data_processing.py
-│   └── test_integration.py
+├── etl/
+│   ├── extract_data.py
+│   ├── transform_data.py
+│   └── load_data.py
 │
-├── docker/
-│   ├── Dockerfile
-│   └── requirements.txt
+├── analytics/
+│   ├── generate_reports.py
+│   └── perform_analysis.py
 │
-├── airflow/
-│   ├── airflow.cfg
-│   └── dags/
+├── monitoring/
+│   ├── log/
+│   │   ├── crawler_logs.log
+│   │   ├── etl_logs.log
+│   │   ├── analytics_logs.log
+│   │   └── error_logs.log
+│   ├── test/
+│   │   ├── test_crawler.py
+│   │   ├── test_etl.py
+│   │   └── test_analytics.py
+│   └── documentation/
+│       ├── data_dictionary.md
+│       └── etl_process.md
 │
-├── kafka/
-│   └── kafka_producer.py
+├── version_control/
+│   ├── git/
+│   └── .gitignore
 │
-├── spark/
-│   ├── spark_job.py
-│   └── spark_submit.sh
-│
-├── dbt/
-│   ├── analysis/
-│   ├── data/
-│   ├── macros/
-│   └── models/
-│
-├── scrapy/
-│   ├── scrapy_project/
-│   │   ├── scrapy.cfg
-│   │   └── scrapy_project/
-│   │       ├── spiders/
-│   │       │   └── your_spider.py
-│   │       └── items.py
-│   └── requirements.txt
-│
-├── requirements.txt
-└── README.md
+└── docker/
+    ├── Dockerfile
+    └── requirements.txt
+
+
 

@@ -84,8 +84,8 @@ class VietnamWorkSpider(scrapy.Spider):
     
     name = 'vietnamework_spider'
 
-    allowed_domains: list = ['itviec.com', 'proxy.scrapeops.io']
-    start_urls: list = ['https://itviec.com/viec-lam-it?job_selected=firmware-engineer-bosch-global-software-technologies-company-limited-2244']
+    allowed_domains: list = ['vietnamworks.com', 'proxy.scrapeops.io']
+    start_urls: list = ['https://www.vietnamworks.com/tim-viec-lam/tim-tat-ca-viec-lam']
     page_num: int = 1
 
     usr_agnt = UserAgent(browsers=[
@@ -103,15 +103,15 @@ class VietnamWorkSpider(scrapy.Spider):
     
     def parse(self, response) -> None:
 
-        jobs: SelectorList = response.css('div.col-md-5 div.job-card')
+        jobs: SelectorList = response.css('div.sc-c721a13b-0 div.new-job-card')
         PAGES_NUMBER = 5
 
         for job in jobs:
-            relative_url = 'https://itviec.com' + job.css('h3.imt-3 a.text-it-black ::attr(href)').get()
+            relative_url = 'https://itviec.com' + job.css('div.sc-gSWElr h2 a ::attr(href)').get()
             if relative_url is not None:
                 yield scrapy.Request(url=relative_url, callback=self.parse_job_page, headers={'User-Agent': self.user_agent})
 
-        # next_page = 'https://www.topcv.vn/viec-lam-it?page={}'.format(JobITSpider.page_num)
+        # next_page = 'https://www.topcv.vn/viec-lam-it?page={}'.format(Jobh3.imt-3ITSpider.page_num)
 
         # if next_page is not None and JobITSpider.page_num <= PAGES_NUMBER:
         #     JobITSpider.page_num += 1
@@ -127,7 +127,7 @@ class VietnamWorkSpider(scrapy.Spider):
         JobITSpider.user_agent = JobITSpider.usr_agnt.random
 
         try:
-            jobitscraperItem['title'] = response.css('div.job-header-info h1.ipt-md-6 ::text').getall()
+            jobitscraperItem['title'] = response.css('div.job-header-info h1.job-title ::text').get()
             jobitscraperItem['name'] = response.css('h1.job-detail__info--title a::text').get()
             jobitscraperItem['salary'] = response.css('div.job-detail__info--section-content-value::text').get()
             jobitscraperItem['address'] = response.css('div.job-description__item--content div ::text').getall()
