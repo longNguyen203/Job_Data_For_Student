@@ -15,7 +15,7 @@ def convert_to_lower(value: str) -> float:
             return float(value.replace("triệu", ""))
         else:
             price: float = float(value.replace("USD", ""))
-            return price * 1000
+            return price
         
 def convert_to_upper(value: str) -> float:
     if pd.notna(value):
@@ -24,12 +24,12 @@ def convert_to_upper(value: str) -> float:
             if "triệu" in value:
                 return float(lst[1].replace("triệu", ""))
             else:
-                return float(lst[1].replace("USD", "")) * 1000
+                return float(lst[1].replace("USD", ""))
         elif "triệu" in value:
             return float(value.replace("triệu", ""))
         else:
             price: float = float(value.replace("USD", ""))
-            return price * 1000
+            return price
         
 def currency_unit(value: str) -> str:
     if pd.notna(value):
@@ -53,8 +53,8 @@ df = df.loc[(df['title'].apply(lambda x: len(x) != 0)) & (df['name'] != None)]
 df['title'] = df['title'].apply(lambda e: "".join(e))
 df['title'] = df['title'].apply(lambda e: e.replace("\n", ""))
 
-df['salary'] = df['salary'].apply(lambda e: e.replace(",", "."))
-df['salary'] = df['salary'].replace("Thoả thuận", np.NaN)
+df['salary'] = df['salary'].apply(lambda e: e.replace(",", ""))
+df['salary'] = df['salary'].replace("Thoả thuận", None)
 df['salary'] = df['salary'].str.replace(" ", "")
 df['salary'] = df['salary'].str.replace("Tới", "").str.replace("Trên", "")
 
@@ -66,7 +66,7 @@ df['time'] = df['time'].apply(lambda e: "".join(e))
 df['time'] = df['time'].apply(lambda e: e.replace("\n", ""))
 df['time'] = df['time'].apply(lambda e: e[-10:])
 df['time'] = df['time'].apply(lambda e: e.replace("/", "-"))
-df['time'] = pd.to_datetime(df['time'], format="%d-%m-%Y", errors='coerce')
+# df['time'] = pd.to_datetime(df['time'], format="%d-%m-%Y", errors='coerce')
 
 df["experience"] = df["experience"].apply(experience_and_number_of_recruits)
 
@@ -74,11 +74,11 @@ df['number_of_recruits'] = df['number_of_recruits'].apply(experience_and_number_
 
 df["description"] = df["description"].apply(lambda e: " ".join(e))
 df["description"] = df["description"].apply(lambda e: e.replace("\n", ""))
-df["description"] = df["description"].replace("", np.NaN)
+df["description"] = df["description"].replace("", None)
 
 df["requirements"] = df["requirements"].apply(lambda e: " ".join(e))
 df["requirements"] = df["requirements"].apply(lambda e: e.replace("\n", ""))
-df["requirements"] = df["requirements"].replace("", np.NaN)
+df["requirements"] = df["requirements"].replace("", None)
 
 df['benefit'] = df['benefit'].apply(lambda e: " ".join(e))
 df['benefit'] = df['benefit'].apply(lambda e: e.replace("- ", ""))
@@ -86,7 +86,7 @@ df['benefit'] = df['benefit'].apply(lambda e: e.replace("●", ""))
 df['benefit'] = df['benefit'].apply(lambda e: e.replace("+ ", ""))
 df['benefit'] = df["benefit"].apply(lambda e: e.replace("• ", ""))
 df['benefit'] = df["benefit"].apply(lambda e: e.replace("\n", ""))
-df["benefit"] = df["benefit"].replace("", np.NaN)
+df["benefit"] = df["benefit"].replace("", None)
 
 ## add column
 df['lower'] = df["salary"].apply(convert_to_lower)
@@ -101,11 +101,12 @@ df.insert(5, 'currency_unit', df.pop('currency_unit'))
 ## drop column
 df = df.drop('name', axis=1)
 
-# print(df.head(10))
+# print(df.head(50))
 # print(df.dtypes)
 # print(df[['salary', 'lower', 'upper', 'currency_unit', 'time', 'rank', 'experience', 'number_of_recruits', 'working_form']].head(50))
 # print(df['benefit'].head(50))
-# print(df['description'].unique())
+print(df[['salary', 'lower', 'upper']].head(50))
+# print(df['time'].unique())
 # print(df.isna().head(50))
 
-df.to_csv('/home/longnguyen/Documents/Coding/Project/Data-Crawler/Project-Crawl-Job_IT/data/processed_data/results.csv', index=False)
+# df.to_csv('/home/longnguyen/Documents/Coding/Project/Data-Crawler/Project-Crawl-Job_IT/data/processed_data/results.csv', index=False)

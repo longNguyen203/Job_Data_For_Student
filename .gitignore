@@ -2,3 +2,6 @@
 py3_env/
 
 __pycache__/
+
+## Ignore file config
+config/config.py

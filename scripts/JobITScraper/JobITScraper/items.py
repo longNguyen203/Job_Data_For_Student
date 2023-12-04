@@ -24,4 +24,15 @@ class JobitscraperItem(scrapy.Item):
     requirements = scrapy.Field()
     benefit = scrapy.Field()
     url = scrapy.Field()
+
+
+class CompanyScrapyItem(scrapy.Item):
+
+    name = scrapy.Field()
+    size = scrapy.Field()
+    address = scrapy.Field()
+    link_web = scrapy.Field()
+    company_intro = scrapy.Field()
+    url = scrapy.Field()
+
     

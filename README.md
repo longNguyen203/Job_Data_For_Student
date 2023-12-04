@@ -2,14 +2,11 @@
 
 1. Collect/Crawl data with scrapy from multiple sources (Topcv, VietnameWork,...)
 
-
-
-
 *** CAY PHAN CAP PROJECT ***
 data_engineer_intern_project/
 │
 ├── dags/
-│   ├── crawl_data_dag.py              
+│   ├── crawl_data_dag.py
 │   ├── process_data_dag.py
 │   └── etl_dag.py
 │
